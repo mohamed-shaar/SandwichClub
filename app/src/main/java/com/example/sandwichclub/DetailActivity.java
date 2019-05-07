@@ -16,8 +16,7 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
-    private ImageView mImageView;
-    private TextView mOriginTextView;
+    private TextView mPlaceOfOriginTextView;
     private TextView mAlsoKnownAsTextView;
     private TextView mIngredientsTextView;
     private TextView mDescriptionTextView;
@@ -29,8 +28,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mImageView = findViewById(R.id.image_iv);
-        mOriginTextView = findViewById(R.id.origin_tv);
+        ImageView mImageView = findViewById(R.id.image_iv);
+        mPlaceOfOriginTextView = findViewById(R.id.origin_tv);
         mAlsoKnownAsTextView = findViewById(R.id.also_known_tv);
         mIngredientsTextView = findViewById(R.id.ingredients_tv);
         mDescriptionTextView = findViewById(R.id.description_tv);
@@ -40,7 +39,10 @@ public class DetailActivity extends AppCompatActivity {
             closeOnError();
         }
 
-        int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
+        int position = 0;
+        if (intent != null) {
+            position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
+        }
         if (position == DEFAULT_POSITION) {
             // EXTRA_POSITION not found in intent
             closeOnError();
@@ -70,7 +72,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
-        mOriginTextView.setText(mSandwich.getPlaceOfOrigin());
+        mPlaceOfOriginTextView.setText(mSandwich.getPlaceOfOrigin());
         mDescriptionTextView.setText(mSandwich.getDescription());
         for (int i = 0; i < mSandwich.getAlsoKnownAs().size(); i++) {
             mAlsoKnownAsTextView.append(mSandwich.getAlsoKnownAs().get(i) + "\n");
