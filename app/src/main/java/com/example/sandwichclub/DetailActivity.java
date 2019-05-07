@@ -3,6 +3,7 @@ package com.example.sandwichclub;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,11 +76,13 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI() {
         mPlaceOfOriginTextView.setText(mSandwich.getPlaceOfOrigin());
         mDescriptionTextView.setText(mSandwich.getDescription());
-        for (int i = 0; i < mSandwich.getAlsoKnownAs().size(); i++) {
+        /*for (int i = 0; i < mSandwich.getAlsoKnownAs().size(); i++) {
             mAlsoKnownAsTextView.append(mSandwich.getAlsoKnownAs().get(i) + "\n");
-        }
-        for (int i = 0; i < mSandwich.getIngredients().size(); i++) {
+        }*/
+        mAlsoKnownAsTextView.setText(TextUtils.join(", ", mSandwich.getAlsoKnownAs()));
+        /*for (int i = 0; i < mSandwich.getIngredients().size(); i++) {
             mIngredientsTextView.append(mSandwich.getIngredients().get(i) + "\n");
-        }
+        }*/
+        mIngredientsTextView.setText(TextUtils.join(", ", mSandwich.getIngredients()));
     }
 }
