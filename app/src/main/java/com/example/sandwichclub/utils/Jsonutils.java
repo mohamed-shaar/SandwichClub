@@ -63,7 +63,8 @@ public class Jsonutils {
             }
 
             //extracting place of origin
-            String placeOfOriginString = sandwichObjectRoot.getString(PLACE_OF_ORIGIN);
+            String placeOfOriginString = sandwichObjectRoot.optString(PLACE_OF_ORIGIN, MISSING_SANDWICH_DETAIL);
+            // sandwichObjectRoot.getString(PLACE_OF_ORIGIN);
 
             //extracting Description
             String description = sandwichObjectRoot.getString(DESCRIPTION);
