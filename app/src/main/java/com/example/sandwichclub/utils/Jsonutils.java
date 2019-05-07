@@ -67,9 +67,10 @@ public class Jsonutils {
             // sandwichObjectRoot.getString(PLACE_OF_ORIGIN);
 
             //extracting Description
-            String description = sandwichObjectRoot.getString(DESCRIPTION);
+            String description = sandwichObjectRoot.optString(DESCRIPTION, MISSING_SANDWICH_DETAIL);
+            //sandwichObjectRoot.getString(DESCRIPTION);
 
-            //extracting description
+            //extracting image link
             String imageLink = sandwichObjectRoot.getString(IMAGE_LINK);
 
             return new Sandwich(mainName, akaArrayList, placeOfOriginString, description, imageLink, ingredientsList);
